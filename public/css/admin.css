@@ -1,0 +1,172 @@
+:root {
+  --bg: #f5f2ed;
+  --surface: #ffffff;
+  --surface-soft: #faf6f0;
+  --text: #1d1713;
+  --muted: #736153;
+  --border: #e5dbcf;
+  --accent: #9b5d1a;
+  --accent-soft: #f5e2cc;
+  --danger: #8f2830;
+  --shadow: 0 20px 45px rgba(28, 20, 13, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(180deg, #f9f6f2 0%, #f3ede5 100%);
+  color: var(--text);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: none;
+  border-radius: 14px;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+}
+
+.secondary-button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.admin-shell {
+  min-height: 100vh;
+  padding: 1.25rem;
+}
+
+.login-card,
+.panel {
+  background: var(--surface);
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.login-card {
+  max-width: 420px;
+  margin: 3rem auto;
+  padding: 2rem;
+}
+
+.stack,
+.grid-form {
+  display: grid;
+  gap: 1rem;
+}
+
+label {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface-soft);
+  padding: 0.85rem 0.95rem;
+}
+
+.dashboard.hidden,
+.hidden {
+  display: none !important;
+}
+
+.dashboard__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.dashboard__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.panel {
+  padding: 1.25rem;
+}
+
+.panel--wide {
+  grid-column: 1 / -1;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.checkbox-row input {
+  width: auto;
+}
+
+.grid-form {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.grid-span {
+  grid-column: 1 / -1;
+}
+
+.list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.list-item {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1rem;
+  background: var(--surface-soft);
+}
+
+.list-item__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.inline-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.inline-actions button {
+  padding: 0.6rem 0.75rem;
+}
+
+.status-message {
+  color: var(--danger);
+}
+
+@media (min-width: 1024px) {
+  .dashboard__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

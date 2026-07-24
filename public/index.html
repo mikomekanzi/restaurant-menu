@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Menu | Premium Dining</title>
+    <meta
+      name="description"
+      content="Browse a premium digital restaurant menu with featured dishes, categories, and real-time availability."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/public/css/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero" id="hero">
+        <div class="hero__content">
+          <span class="eyebrow">Digital dining experience</span>
+          <h1 id="restaurant-name">Restaurant Menu</h1>
+          <p id="restaurant-tagline" class="hero__tagline"></p>
+          <div class="hero__meta">
+            <span id="restaurant-hours"></span>
+            <span id="restaurant-phone"></span>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="info-bar" aria-label="Restaurant information">
+          <div>
+            <h2>Welcome</h2>
+            <p id="restaurant-description"></p>
+          </div>
+          <div class="info-bar__details">
+            <p id="restaurant-address"></p>
+            <p id="restaurant-email"></p>
+          </div>
+        </section>
+
+        <section class="featured-section" aria-labelledby="featured-title">
+          <div class="section-heading">
+            <h2 id="featured-title">Featured dishes</h2>
+            <p>Chef’s recommendations and guest favorites.</p>
+          </div>
+          <div class="featured-grid" id="featured-grid"></div>
+        </section>
+
+        <section class="controls" aria-label="Menu controls">
+          <div class="search-box">
+            <input id="search-input" type="search" placeholder="Search meals, drinks, or flavors..." aria-label="Search menu items" />
+          </div>
+          <div class="category-filters" id="category-filters"></div>
+        </section>
+
+        <section class="menu-section" aria-labelledby="menu-title">
+          <div class="section-heading">
+            <h2 id="menu-title">Full menu</h2>
+            <p>All prices are shown in Ethiopian Birr (ETB).</p>
+          </div>
+          <div class="menu-grid" id="menu-grid"></div>
+          <p class="empty-state hidden" id="empty-state">No menu items match your search right now.</p>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/public/js/menu.js"></script>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Menu Admin</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/public/css/admin.css" />
+  </head>
+  <body>
+    <main class="admin-shell">
+      <section class="login-card" id="login-view">
+        <h1>Restaurant Admin</h1>
+        <p>Use the default credentials from the README to sign in and manage the digital menu.</p>
+        <form id="login-form" class="stack">
+          <label>
+            Email
+            <input type="email" name="email" value="admin@restaurantmenu.local" required />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" value="Admin@123" required />
+          </label>
+          <button type="submit">Log in</button>
+        </form>
+        <p class="status-message" id="login-status"></p>
+      </section>
+
+      <section class="dashboard hidden" id="dashboard-view">
+        <header class="dashboard__header">
+          <div>
+            <h1>Menu Dashboard</h1>
+            <p>Manage restaurant details, categories, and menu items.</p>
+          </div>
+          <button id="logout-button" class="secondary-button">Log out</button>
+        </header>
+
+        <div class="dashboard__grid">
+          <section class="panel">
+            <h2>Restaurant details</h2>
+            <form id="restaurant-form" class="stack">
+              <label>Restaurant name <input name="name" required /></label>
+              <label>Tagline <input name="tagline" /></label>
+              <label>Description <textarea name="description" rows="3"></textarea></label>
+              <label>Phone <input name="phone" /></label>
+              <label>Email <input name="email" type="email" /></label>
+              <label>Address <input name="address" /></label>
+              <label>Opening hours <input name="opening_hours" /></label>
+              <label>Logo image <input name="logo" type="file" accept="image/*" /></label>
+              <button type="submit">Save restaurant info</button>
+            </form>
+          </section>
+
+          <section class="panel">
+            <h2>Create category</h2>
+            <form id="category-form" class="stack">
+              <label>Category name <input name="name" required /></label>
+              <label>Category slug <input name="slug" required /></label>
+              <label class="checkbox-row"><input name="is_visible" type="checkbox" checked /> Visible to customers</label>
+              <button type="submit">Add category</button>
+            </form>
+            <div id="category-list" class="list"></div>
+          </section>
+
+          <section class="panel panel--wide">
+            <h2>Add menu item</h2>
+            <form id="item-form" class="grid-form">
+              <label>Name <input name="name" required /></label>
+              <label>Category <select name="category_id" id="item-category-select" required></select></label>
+              <label>Price (ETB) <input name="price" type="number" min="0" step="0.01" required /></label>
+              <label>Image <input name="image" type="file" accept="image/*" /></label>
+              <label class="grid-span">Description <textarea name="description" rows="3"></textarea></label>
+              <label>Availability note <input name="availability_note" placeholder="Optional note" /></label>
+              <label>Available from <input name="available_from" type="time" /></label>
+              <label>Available to <input name="available_to" type="time" /></label>
+              <label class="checkbox-row"><input name="is_available" type="checkbox" checked /> Available</label>
+              <label class="checkbox-row"><input name="is_featured" type="checkbox" /> Featured</label>
+              <label class="checkbox-row"><input name="is_spicy" type="checkbox" /> Spicy</label>
+              <label class="checkbox-row"><input name="is_vegetarian" type="checkbox" /> Vegetarian</label>
+              <button type="submit" class="grid-span">Create menu item</button>
+            </form>
+          </section>
+
+          <section class="panel panel--wide">
+            <h2>Menu items</h2>
+            <div id="item-list" class="list"></div>
+          </section>
+
+          <section class="panel panel--wide">
+            <h2>Price history</h2>
+            <div id="history-list" class="list"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/public/js/admin.js"></script>
+  </body>
+</html>

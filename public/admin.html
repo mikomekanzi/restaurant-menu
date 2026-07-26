@@ -87,6 +87,33 @@
             </form>
           </section>
 
+          <section class="panel panel--wide hidden" id="edit-item-panel">
+            <div class="section-heading">
+              <div>
+                <h2>Edit menu item</h2>
+                <p>Update the item details and save changes.</p>
+              </div>
+              <button type="button" id="cancel-edit-button" class="secondary-button">Cancel</button>
+            </div>
+            <form id="edit-item-form" class="grid-form">
+              <input type="hidden" name="id" />
+              <label>Name <input name="name" required /></label>
+              <label>Category <select name="category_id" id="edit-item-category-select" required></select></label>
+              <label>Price (ETB) <input name="price" type="number" min="0" step="0.01" required /></label>
+              <label>Image <input name="image" type="file" accept="image/*" /></label>
+              <label class="grid-span">Description <textarea name="description" rows="3"></textarea></label>
+              <label>Image URL <input name="image_url" placeholder="Existing image URL" /></label>
+              <label>Availability note <input name="availability_note" placeholder="Optional note" /></label>
+              <label>Available from <input name="available_from" type="time" /></label>
+              <label>Available to <input name="available_to" type="time" /></label>
+              <label class="checkbox-row"><input name="is_available" type="checkbox" /> Available</label>
+              <label class="checkbox-row"><input name="is_featured" type="checkbox" /> Featured</label>
+              <label class="checkbox-row"><input name="is_spicy" type="checkbox" /> Spicy</label>
+              <label class="checkbox-row"><input name="is_vegetarian" type="checkbox" /> Vegetarian</label>
+              <button type="submit" class="grid-span">Save changes</button>
+            </form>
+          </section>
+
           <section class="panel panel--wide">
             <h2>Menu items</h2>
             <div id="item-list" class="list"></div>

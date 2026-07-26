@@ -10,6 +10,10 @@ const categoryList = document.getElementById('category-list');
 const itemList = document.getElementById('item-list');
 const historyList = document.getElementById('history-list');
 const categorySelect = document.getElementById('item-category-select');
+const editItemPanel = document.getElementById('edit-item-panel');
+const editItemForm = document.getElementById('edit-item-form');
+const cancelEditButton = document.getElementById('cancel-edit-button');
+const editCategorySelect = document.getElementById('edit-item-category-select');
 
 let dashboardData = null;
 
@@ -38,9 +42,11 @@ async function fetchJson(url, options = {}) {
 }
 
 function renderCategories(categories) {
-  categorySelect.innerHTML = categories
+  const optionsHtml = categories
     .map((category) => `<option value="${category.id}">${category.name}</option>`)
     .join('');
+  categorySelect.innerHTML = optionsHtml;
+  editCategorySelect.innerHTML = optionsHtml;
 
   categoryList.innerHTML = categories
     .map(
@@ -81,6 +87,7 @@ function renderItems(items) {
               <button data-action="feature-item" data-id="${item.id}" data-featured="${item.is_featured}">
                 ${item.is_featured ? 'Remove featured' : 'Make featured'}
               </button>
+              <button data-action="edit-item" data-id="${item.id}">Edit</button>
               <button data-action="delete-item" data-id="${item.id}">Delete</button>
             </div>
           </div>
@@ -222,6 +229,27 @@ itemList.addEventListener('click', async (event) => {
   const id = button.dataset.id;
   const action = button.dataset.action;
 
+  if (action === 'edit-item') {
+    const item = dashboardData.items.find((entry) => String(entry.id) === String(id));
+    if (!item) return;
+    editItemForm.querySelector('[name="id"]').value = item.id;
+    editItemForm.name.value = item.name;
+    editCategorySelect.value = item.category_id;
+    editItemForm.price.value = item.price;
+    editItemForm.description.value = item.description || '';
+    editItemForm.image_url.value = item.image_url || '';
+    editItemForm.availability_note.value = item.availability_note || '';
+    editItemForm.available_from.value = item.available_from || '';
+    editItemForm.available_to.value = item.available_to || '';
+    editItemForm.is_available.checked = Boolean(item.is_available);
+    editItemForm.is_featured.checked = Boolean(item.is_featured);
+    editItemForm.is_spicy.checked = Boolean(item.is_spicy);
+    editItemForm.is_vegetarian.checked = Boolean(item.is_vegetarian);
+    editItemPanel.classList.remove('hidden');
+    editItemPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+
   if (action === 'delete-item') {
     const confirmed = window.confirm('Delete this menu item?');
     if (!confirmed) return;
@@ -254,6 +282,24 @@ itemList.addEventListener('click', async (event) => {
   }
 
   await loadDashboard();
+});
+
+editItemForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const id = editItemForm.querySelector('[name="id"]').value;
+  await fetchJson(`/api/admin/items/${id}`, {
+    method: 'PUT',
+    body: toFormData(editItemForm),
+  });
+  editItemPanel.classList.add('hidden');
+  editItemForm.reset();
+  await loadDashboard();
+  alert('Menu item updated successfully.');
+});
+
+cancelEditButton.addEventListener('click', () => {
+  editItemPanel.classList.add('hidden');
+  editItemForm.reset();
 });
 
 checkSession();
